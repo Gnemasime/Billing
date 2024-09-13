@@ -6,7 +6,6 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] != 'admin') {
 }
 
 // Database connection
-
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -28,6 +27,10 @@ if ($conn->connect_error) {
 $totalUsers = $conn->query("SELECT COUNT(*) AS count FROM users WHERE role = 'user'")->fetch_assoc()['count'];
 $activeBills = $conn->query("SELECT COUNT(*) AS count FROM bills WHERE status = 'unpaid'")->fetch_assoc()['count'];
 $totalRevenue = $conn->query("SELECT SUM(payment_amount) AS revenue FROM transactions")->fetch_assoc()['revenue'] ?? 0;
+
+// Fetch data for the pie chart (Water vs Electricity)
+$waterTotal = $conn->query("SELECT SUM(amount_due) AS total_water FROM bills WHERE service_type = 'water'")->fetch_assoc()['total_water'] ?? 0;
+$electricityTotal = $conn->query("SELECT SUM(amount_due) AS total_electricity FROM bills WHERE service_type = 'electricity'")->fetch_assoc()['total_electricity'] ?? 0;
 
 $conn->close();
 ?>
@@ -65,7 +68,49 @@ $conn->close();
                 </div>
             </div>
         </div>
+
+        <!-- Pie Chart Section -->
+        <div class="row mt-5">
+            <div class="col-md-12 text-center">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Water vs Electricity Bills</h5>
+                        <!-- Smaller Chart -->
+                        <canvas id="billsChart" width="150" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+<!-- Include Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+// Get PHP data into JavaScript
+var waterTotal = <?php echo $waterTotal; ?>;
+var electricityTotal = <?php echo $electricityTotal; ?>;
+
+var ctx = document.getElementById('billsChart').getContext('2d');
+var myPieChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: ['Water Bills', 'Electricity Bills'],
+        datasets: [{
+            data: [waterTotal, electricityTotal],
+            backgroundColor: ['#00c6ff', '#ffcc00'], // Water: Blue, Electricity: Yellow
+            hoverBackgroundColor: ['#0072ff', '#ffeb3b']
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'bottom',
+            }
+        }
+    }
+});
+</script>
 
 <?php include 'includes/footer.php'; ?>

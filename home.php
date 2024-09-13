@@ -102,8 +102,21 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-            
-           
+             <li class="nav-item">
+                 <a class="nav-link" href="dashboard.php"><i class="fas fa-home"></i> Dashboard</a>
+             </li>
+                 <li class="nav-item">
+               <a class="nav-link active" href="profile.php"><i class="fas fa-user"></i> Profile</a>
+             </li>
+            <li class="nav-item dropdown">
+           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-briefcase"></i> Bills
+          </a>
+           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="electricity_bills.php">Electricity</a></li>
+            <li><a class="dropdown-item" href="water_bills.php">Water</a></li>
+          </ul>
+            </li>
             <li class="nav-item dropdown">
            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
            <i class="fas fa-newspaper"></i>News
@@ -115,7 +128,7 @@
           </ul>
             </li>
             <li class="nav-item">
-          <a class="nav-link" href="login.php"><i class="fas fa-sign-out-alt"></i> Login</a>
+          <a class="nav-link" href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
           </li>
             </ul>
 
