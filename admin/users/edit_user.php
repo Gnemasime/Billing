@@ -31,10 +31,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $last_name = $_POST['last_name'];
     $email = $_POST['email'];
     $role = $_POST['role'];
-    $meter_number = $_POST['meter_number'];
+    $id_number = $_POST['id_number'];
 
-    $stmt = $conn->prepare("UPDATE users SET first_name = ?, last_name = ?, email = ?, role = ?, meter_number = ? WHERE id = ?");
-    $stmt->bind_param("sssssi", $first_name, $last_name, $email, $role, $meter_number, $id);
+    $stmt = $conn->prepare("UPDATE users SET first_name = ?, last_name = ?, email = ?, role = ?, id_number = ? WHERE id = ?");
+    $stmt->bind_param("sssssi", $first_name, $last_name, $email, $role, $id_number, $id);
 
     if ($stmt->execute()) {
         echo "<script>alert('User updated successfully.'); window.location.href='../manage_users.php';</script>";

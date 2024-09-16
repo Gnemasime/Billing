@@ -128,8 +128,8 @@ $result = $conn->query("
                         <td><?php echo ucfirst($row['status']); ?></td>
                         <td><?php echo $row['due_date']; ?></td>
                         <td>
-                            <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#editBillModal<?php echo $row['id']; ?>">Edit</button>
-                            <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteBillModal<?php echo $row['id']; ?>">Delete</button>
+                            <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#editBillModal<?php echo $row['id']; ?>"><i class="fa fa-pencil-alt" aria-hidden="true"></i></button>
+                            <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteBillModal<?php echo $row['id']; ?>"><i class="fa fa-trash" aria-hidden="true"></i></button>
                         </td>
                     </tr>
 

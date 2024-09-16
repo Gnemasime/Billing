@@ -6,12 +6,12 @@ $db = 'municipal_billing';
 $user = 'root'; // your database username
 $pass = '';     // your database password
 */
-$host = "sql110.infinityfree.com";
+$servername = "sql110.infinityfree.com";
 $username = "if0_37164635";
-$pass = "bd2xR7cX6JRK";
-$db = "if0_37164635_municipal_billing";
-// Create connection
-$conn = new mysqli($host, $user, $pass, $db);
+$password = "bd2xR7cX6JRK";
+$dbname = "if0_37164635_municipal_billing";
+// Create a connection to the database
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
 if ($conn->connect_error) {

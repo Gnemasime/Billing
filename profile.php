@@ -1,23 +1,20 @@
 <?php
 session_start();
+
+// Check if the user is logged in
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
 }
 
 // Database connection
-/*
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "municipal_billing";
-*/
 $servername = "sql110.infinityfree.com";
 $username = "if0_37164635";
 $password = "bd2xR7cX6JRK";
 $dbname = "if0_37164635_municipal_billing";
-$conn = new mysqli($servername, $username, $password, $dbname);
 
+// Create a connection to the database
+$conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -25,10 +22,10 @@ if ($conn->connect_error) {
 $user_id = $_SESSION['user_id'];
 
 // Fetch user details
-$stmt = $conn->prepare("SELECT email, id_number, first_name, last_name, role, id_number, date_of_birth, city, postcode, state FROM users WHERE id = ?");
+$stmt = $conn->prepare("SELECT email, id_number, first_name, last_name, role, date_of_birth, city, postcode, state FROM users WHERE id = ?");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
-$stmt->bind_result($email, $id_number, $first_name, $last_name, $role, $id_number, $date_of_birth, $city, $postcode, $state);
+$stmt->bind_result($email, $id_number, $first_name, $last_name, $role, $date_of_birth, $city, $postcode, $state);
 $stmt->fetch();
 $stmt->close();
 $conn->close();
@@ -50,8 +47,8 @@ $conn->close();
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #00c6ff, #0072ff);
-            color: #333;
+            background: linear-gradient(135deg, #003366, #000000);
+            color: #fff;
             padding: 0;
             margin: 0;
         }
@@ -59,7 +56,7 @@ $conn->close();
         .navbar {
             background: rgba(0, 86, 179, 0.7);
             backdrop-filter: blur(10px);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         }
 
         .navbar .navbar-brand {
@@ -81,10 +78,9 @@ $conn->close();
         .profile-container {
             max-width: 700px;
             margin: 0 auto;
-            background: white;
+            background: #1a1a1a;
             border-radius: 10px;
-            backdrop-filter: blur(15px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             padding: 20px;
             text-align: center;
             margin-top: 20px;
@@ -92,7 +88,7 @@ $conn->close();
 
         .profile-container h2 {
             margin-bottom: 20px;
-            color: #0056b3;
+            color: #007bff;
         }
 
         .profile-container .profile-image {
@@ -103,7 +99,7 @@ $conn->close();
             border-radius: 50%;
             width: 100px;
             height: 100px;
-            border: 3px solid #0056b3;
+            border: 3px solid #007bff;
         }
 
         .profile-container .info {
@@ -115,24 +111,23 @@ $conn->close();
         .profile-container .info strong {
             display: inline-block;
             width: 150px;
-            color: #0056b3;
+            color: #007bff;
         }
 
         .profile-container .btn-primary {
-            background-color: #0056b3;
+            background-color: #007bff;
             border: none;
             margin: 5px;
             transition: background 0.3s;
         }
 
         .profile-container .btn-primary:hover {
-            background-color: #004494;
+            background-color: #0056b3;
         }
     </style>
 </head>
 
 <body>
-
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
@@ -141,40 +136,39 @@ $conn->close();
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-             <li class="nav-item">
-                 <a class="nav-link" href="dashboard.php"><i class="fas fa-home"></i> Dashboard</a>
-             </li>
-                 <li class="nav-item">
-               <a class="nav-link active" href="profile.php"><i class="fas fa-user"></i> Profile</a>
-             </li>
-            <li class="nav-item dropdown">
-           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="fas fa-briefcase"></i> Bills
-          </a>
-           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="electricity_bills.php">Electricity</a></li>
-            <li><a class="dropdown-item" href="water_bills.php">Water</a></li>
-          </ul>
-            </li>
-            <li class="nav-item dropdown">
-           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-           <i class="fas fa-newspaper"></i>News
-          </a>
-           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="electricity_news.php">Electricity</a></li>
-            <li><a class="dropdown-item" href="water_news.php">Water</a></li>
-            <li><a class="dropdown-item" href="loadshedding.php">Loadshedding</a></li>
-          </ul>
-            </li>
-            <li class="nav-item">
-          <a class="nav-link" href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
-          </li>
-            </ul>
-
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.php"><i class="fas fa-home"></i> Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="profile.php"><i class="fas fa-user"></i> Profile</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-briefcase"></i> Bills
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="electricity_bills.php">Electricity</a></li>
+                            <li><a class="dropdown-item" href="water_bills.php">Water</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-newspaper"></i> News
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="electricity_news.php">Electricity</a></li>
+                            <li><a class="dropdown-item" href="water_news.php">Water</a></li>
+                            <li><a class="dropdown-item" href="loadshedding.php">Loadshedding</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </li>
+                </ul>
             </div>
-             </div>
-     </nav>
+        </div>
+    </nav>
 
     <!-- Profile Container -->
     <div class="container-fluid">
@@ -193,9 +187,6 @@ $conn->close();
                 <strong>Role:</strong> <?= htmlspecialchars($role) ?>
             </div>
             <div class="info">
-                <strong>ID No.:</strong> <?= htmlspecialchars($id_number) ?>
-            </div>
-            <div class="info">
                 <strong>Date of Birth:</strong> <?= htmlspecialchars($date_of_birth) ?>
             </div>
             <div class="info">
@@ -208,7 +199,6 @@ $conn->close();
                 <strong>State:</strong> <?= htmlspecialchars($state) ?>
             </div>
             <a href="edit_profile.php" class="btn btn-primary">Update Profile</a>
-            <button class="btn btn-primary" id="changePasswordBtn">Change Password</button>
         </div>
     </div>
 

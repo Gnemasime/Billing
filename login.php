@@ -2,17 +2,17 @@
 session_start(); // Start a session to store user information
 
 // Include your database connection file
-
+/*
 $servername = "sql110.infinityfree.com";
 $username = "if0_37164635";
 $password = "bd2xR7cX6JRK";
 $dbname = "if0_37164635_municipal_billing";
-/*
+*/
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "municipal_billing";
-*/
+
 // Create a connection to the database
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -86,7 +86,76 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" type="text/css" href="assets/css/login.css">
 </head>
 <body>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    background: #f0f2f5;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
 
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+}
+
+.login-container, .signup-container {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.login-container h2, .signup-container h2 {
+    text-align: center;
+    color: #0056b3;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.btn-primary {
+    background-color: #0056b3;
+    border: none;
+    margin-top: 10px;
+}
+
+.btn-primary:hover {
+    background-color: #004494;
+}
+
+a {
+    color: #0056b3;
+}
+
+a:hover {
+    color: #004494;
+}
+.navbar {
+    background: rgba(0, 86, 179, 0.7);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .navbar-brand {
+    color: #fff;
+    ofnt-weight:bold;
+}
+
+.navbar .navbar-nav .nav-link {
+    color: #fff;
+    font-size : 1.1em;
+}
+
+.navbar .navbar-nav .nav-link:hover {
+    color: #f8f9fa;
+}
+
+.container-fluid {
+    padding: 20px;
+}
+</style>
 
 <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">

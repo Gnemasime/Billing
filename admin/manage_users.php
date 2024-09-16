@@ -59,7 +59,7 @@ $total_pages = ceil($total_records / $limit);
                 <th>Last Name</th>
                 <th>Email</th>
                 <th>Role</th>
-                <th>Meter Number</th>
+                <th>ID Number</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -71,10 +71,10 @@ $total_pages = ceil($total_records / $limit);
                     <td><?php echo $row['last_name']; ?></td>
                     <td><?php echo $row['email']; ?></td>
                     <td><?php echo ucfirst($row['role']); ?></td>
-                    <td><?php echo $row['meter_number']; ?></td>
+                    <td><?php echo $row['id_number']; ?></td>
                     <td>
-                        <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editUserModal<?php echo $row['id']; ?>">Edit</button>
-                        <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteUserModal<?php echo $row['id']; ?>">Delete</button>
+                    <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editUserModal<?php echo $row['id']; ?>"><i class="fa fa-pencil-alt" aria-hidden="true"></i></button>
+                    <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteUserModal<?php echo $row['id']; ?>"><i class="fa fa-trash" aria-hidden="true"></i></button>
                     </td>
                 </tr>
             <?php } ?>
@@ -134,11 +134,12 @@ $total_pages = ceil($total_records / $limit);
                         <select class="form-control" id="role" name="role" required>
                             <option value="user">User</option>
                             <option value="admin">Admin</option>
+                            <option value="junior_admin">Junior Admin</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="meter_number">Meter Number:</label>
-                        <input type="text" class="form-control" id="meter_number" name="meter_number" required>
+                        <input type="text" class="form-control" id="id_number" name="meter_number" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Add User</button>
                 </form>
@@ -146,5 +147,76 @@ $total_pages = ceil($total_records / $limit);
         </div>
     </div>
 </div>
-
+<!-- Edit User Modal -->
+<?php foreach ($result as $row) { ?>
+            <div class="modal fade" id="editUserModal<?php echo $row['id']; ?>" tabindex="-1" aria-labelledby="editUserModalLabel<?php echo $row['id']; ?>" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editUserModalLabel<?php echo $row['id']; ?>">Edit User</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="users/edit_user.php" method="POST">
+                                <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                                <div class="form-group">
+                                    <label for="first_name">First Name:</label>
+                                    <input type="text" class="form-control" id="first_name" name="first_name" value="<?php echo $row['first_name']; ?>" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="last_name">Last Name:</label>
+                                    <input type="text" class="form-control" id="last_name" name="last_name" value="<?php echo $row['last_name']; ?>" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email Address:</label>
+                                    <input type="email" class="form-control" id="email" name="email" value="<?php echo $row['email']; ?>" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="role">Role:</label>
+                                    <select class="form-control" id="role" name="role" required>
+                                        <option value="user" <?php if ($row['role'] == 'user') echo 'selected'; ?>>User</option>
+                                        <option value="admin" <?php if ($row['role'] == 'admin') echo 'selected'; ?>>Admin</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="id_number">ID Number:</label>
+                                    <input type="text" class="form-control" id="id_number" name="id_number" value="<?php echo $row['id_number']; ?>" required pattern="\d{13}">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Update User</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+        
+     <!-- Delete User Modal -->
+     <?php foreach ($result as $row) { ?>
+            <div class="modal fade" id="deleteUserModal<?php echo $row['id']; ?>" tabindex="-1" aria-labelledby="deleteUserModalLabel<?php echo $row['id']; ?>" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteUserModalLabel<?php echo $row['id']; ?>">Delete User</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure you want to delete the user <strong><?php echo $row['first_name'] . ' ' . $row['last_name']; ?></strong>?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <form action="users/delete_user.php" method="POST">
+                                <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+    </div>
+</div>
 <?php include 'includes/footer.php'; ?>

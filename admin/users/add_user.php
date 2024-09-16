@@ -30,10 +30,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
     $role = $_POST['role'];
-    $meter_number = $_POST['meter_number'];
+    $id_number = $_POST['id_number'];
 
-    $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, email, password, role, meter_number) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssss", $first_name, $last_name, $email, $password, $role, $meter_number);
+    $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, email, password, role, id_number) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssssss", $first_name, $last_name, $email, $password, $role, $id_number);
 
     if ($stmt->execute()) {
         echo "<script>alert('User added successfully.'); window.location.href='../manage_users.php';</script>";
