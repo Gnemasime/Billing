@@ -6,17 +6,18 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] != 'admin') {
 }
 
 // Database connection
-/*
+
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "municipal_billing";
-*/
+
+/*
 $servername = "sql110.infinityfree.com";
 $username = "if0_37164635";
 $password = "bd2xR7cX6JRK";
 $dbname = "if0_37164635_municipal_billing";
-
+*/
 // Create a connection to the database
 $conn = new mysqli($servername, $username, $password, $dbname);
 

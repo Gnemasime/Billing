@@ -9,16 +9,18 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 // Database connection details
-/*
+
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "municipal_billing";
-*/
+
+/*
 $servername = "sql110.infinityfree.com";
 $username = "if0_37164635";
 $password = "bd2xR7cX6JRK";
 $dbname = "if0_37164635_municipal_billing";
+*/
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -266,7 +268,7 @@ $total_pages = ceil($total_records / $records_per_page);
     <?php
     if ($result->num_rows > 0) {
         echo "<table>";
-        echo "<tr><th>ID</th><th>Service Type</th><th>Amount Due</th><th>Due Date</th><th>Status</th><th>Created At</th></tr>";
+        echo "<tr><th>ID</th><th>Service Type</th><th>Amount Due</th><th>Due Date</th><th>Status</th><th>Created At</th><th>Action</th></tr>";
         while ($row = $result->fetch_assoc()) {
             echo "<tr>";
             echo "<td>" . $row['id'] . "</td>";
@@ -275,11 +277,17 @@ $total_pages = ceil($total_records / $records_per_page);
             echo "<td>" . $row['due_date'] . "</td>";
             echo "<td>" . ucfirst($row['status']) . "</td>"; // Capitalize first letter
             echo "<td>" . $row['created_at'] . "</td>";
+            // If the bill is unpaid or overdue, show the "Pay" button
+            if ($row['status'] === 'unpaid' || $row['status'] === 'overdue') {
+                echo "<td><a href='pay_bill.php?bill_id=" . $row['id'] . "' class='btn btn-success'>Pay Now</a></td>";
+             } else {
+            echo "<td>Paid</td>";
+             }
             echo "</tr>";
         }
         echo "</table>";
     } else {
-        echo "<p class='no-bills'>No water bills found for your account.</p>";
+        echo "<p class='no-bills'>No electricity bills found for your account.</p>";
     }
   // Pagination links
   if ($total_pages > 1) {

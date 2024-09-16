@@ -1,15 +1,18 @@
 <?php
 // Database connection
+
+$servername = '127.0.0.1';
+$dbname = 'municipal_billing';
+$username = 'root'; // your database username
+$password = '';     // your database password
+
 /*
-$host = '127.0.0.1';
-$db = 'municipal_billing';
-$user = 'root'; // your database username
-$pass = '';     // your database password
-*/
 $servername = "sql110.infinityfree.com";
 $username = "if0_37164635";
 $password = "bd2xR7cX6JRK";
 $dbname = "if0_37164635_municipal_billing";
+
+*/
 // Create a connection to the database
 $conn = new mysqli($servername, $username, $password, $dbname);
 

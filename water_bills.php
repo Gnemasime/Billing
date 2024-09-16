@@ -9,16 +9,18 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 // Database connection details
-/*
+
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "municipal_billing";
-*/
+
+/*
 $servername = "sql110.infinityfree.com";
 $username = "if0_37164635";
 $password = "bd2xR7cX6JRK";
 $dbname = "if0_37164635_municipal_billing";
+*/
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 

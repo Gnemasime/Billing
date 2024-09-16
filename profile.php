@@ -6,12 +6,19 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
 }
-
+/*
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "municipal_billing";
+*/
 // Database connection
+
 $servername = "sql110.infinityfree.com";
 $username = "if0_37164635";
 $password = "bd2xR7cX6JRK";
 $dbname = "if0_37164635_municipal_billing";
+
 
 // Create a connection to the database
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -198,7 +205,7 @@ $conn->close();
             <div class="info">
                 <strong>State:</strong> <?= htmlspecialchars($state) ?>
             </div>
-            <a href="edit_profile.php" class="btn btn-primary">Update Profile</a>
+            <a href="update_profile.php" class="btn btn-primary">Update Profile</a>
         </div>
     </div>
 

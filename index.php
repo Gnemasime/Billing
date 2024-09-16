@@ -104,15 +104,7 @@
             <ul class="navbar-nav ms-auto">
             
            
-            <li class="nav-item dropdown">
-           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-           <i class="fas fa-newspaper"></i>News
-          </a>
-           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="electricity_news.php">Electricity</a></li>
-            <li><a class="dropdown-item" href="water_news.php">Water</a></li>
-            <li><a class="dropdown-item" href="loadshedding.php">Loadshedding</a></li>
-          </ul>
+           
             </li>
             <li class="nav-item">
           <a class="nav-link" href="login.php"><i class="fas fa-sign-out-alt"></i> Login</a>
