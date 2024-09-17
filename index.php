@@ -1,97 +1,137 @@
+
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Municipal Billing System - Home</title>
+     <!-- Bootstrap CSS -->
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Custom CSS -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            color: #333;
+            padding: 0;
+            margin: 0;
+        }
 
-<html>
-    <head>
-        <title>Login</title>
-        <link rel="stylesheet" type="text/css" href="btn.css">
-        <!-- Bootstrap CSS -->
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    </head>
-    <body>
-        <div class="container">
-            <!-- Button to Open the Login Modal -->
-<button type="button" class="btn btn-animated" data-toggle="modal" data-target="#loginModal">
-  <span>Login</span>
-</button>
+        .navbar {
+            background: rgba(0, 86, 179, 0.7);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
 
-<!-- Button to Open the Signup Modal -->
-<button type="button" class="btn btn-animated" data-toggle="modal" data-target="#signupModal">
-  <span>Signup</span>
-</button>
-<!-- Login Modal -->
-<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="loginModalLabel">Login</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form action="login.php" method="post">
-          <div class="form-group">
-            <label for="loginEmail">Email address</label>
-            <input type="email" class="form-control" id="loginEmail" name="email" placeholder="Enter email" required>
-          </div>
-          <div class="form-group">
-            <label for="loginPassword">Password</label>
-            <input type="password" class="form-control" id="loginPassword" name="password" placeholder="Password" required>
-          </div>
-          <button type="submit" class="btn btn-primary">Login</button>
-        </form>
-      </div>
+        .navbar .navbar-brand {
+            color: #fff;
+            font-weight : bold;
+        }
+
+        .navbar .navbar-nav .nav-link {
+            color: #fff;
+            font-size : 1.1em;
+        }
+
+        .navbar .navbar-nav .nav-link:hover {
+            color: #f8f9fa;
+        }
+
+        .container-fluid {
+            padding: 20px;
+        }
+
+        .profile-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .profile-container h2 {
+            margin-bottom: 30px;
+            color: #0056b3;
+        }
+
+        .cta {
+            margin-top: 30px;
+        }
+
+        .cta a {
+            padding: 15px 25px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            font-size: 1.5em;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        .cta a:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            background-color: rgba(0, 86, 179, 0.7);
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+   <!-- Header -->
+   <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="home.php">Municipal Billing System</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+            
+           
+           
+            </li>
+            <li class="nav-item">
+          <a class="nav-link" href="login.php"><i class="fas fa-sign-out-alt"></i> Login</a>
+          </li>
+            </ul>
+
+            </div>
+             </div>
+     </nav>
+
+    <!-- Main Content -->
+    <div class="container-fluid">
+        <div class="profile-container">
+            <h2>Welcome to the Municipal Billing System</h2>
+            <p>Manage your water, electricity, and other service bills with ease. View unpaid bills, transaction history, and more through our streamlined system.</p>
+            <div class="cta">
+                <a href="dashboard.php">Go to Dashboard</a>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
-<!-- Signup Modal -->
-<div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="signupModalLabel">Signup</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form action="signup.php" method="post">
-          <div class="form-group">
-            <label for="signupFirstName">First Name</label>
-            <input type="text" class="form-control" id="signupFirstName" name="first_name" placeholder="Enter first name" required>
-          </div>
-          <div class="form-group">
-            <label for="signupLastName">Last Name</label>
-            <input type="text" class="form-control" id="signupLastName" name="last_name" placeholder="Enter last name" required>
-          </div>
-          <div class="form-group">
-            <label for="signupEmail">Email address</label>
-            <input type="email" class="form-control" id="signupEmail" name="email" placeholder="Enter email" required>
-          </div>
-          <div class="form-group">
-            <label for="signupPassword">Password</label>
-            <input type="password" class="form-control" id="signupPassword" name="password" placeholder="Password" required>
-          </div>
-          <div class="form-group">
-            <label for="signupIdNumber">ID Number</label>
-            <input type="text" class="form-control" id="signupIdNumber" name="id_number" placeholder="Enter ID number" required>
-            <div class="form-group">
-            <label for="signupMeterNumber">Meter Number</label>
-            <input type="text" class="form-control" id="signupMeterNumber" name="meter_number" placeholder="Enter Meter number" required>
-          </div>
-          </div>
-          <button type="submit" class="btn btn-primary">Signup</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-</div>
-    </body>
-   <!-- Bootstrap JS and jQuery -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    </html>
+    <footer><br>
+        <p>&copy; 2024 Municipal Billing System. All rights reserved.</p>
+    </footer>
+<!-- Bootstrap JS and dependencies -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/shuffle.js"></script>
+</body>
+</html>

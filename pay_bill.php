@@ -8,10 +8,12 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 // Database connection
+
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "municipal_billing"; 
+
 /*
 $servername = "sql110.infinityfree.com";
 $username = "if0_37164635";
@@ -38,7 +40,7 @@ $stmt->close();
 
 if (!$service_type) {
     // Redirect to profile if the bill is not found or does not belong to the user
-    header("Location: index.php");
+    header("Location: dashboard.php");
     exit();
 }
 ?>
@@ -52,6 +54,9 @@ if (!$service_type) {
     <meta name="description" content="Pay Bill - Municipal Billing System">
     <meta name="author" content="Municipal Billing System">
     <title>Pay Bill</title>
+     <!-- FontAwesome Icons -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- PayPal SDK with South African Rand (ZAR) -->
@@ -65,11 +70,34 @@ if (!$service_type) {
             padding: 0;
             margin: 0;
         }
+        
+        .navbar {
+            background: rgba(0, 86, 179, 0.7);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar .navbar-brand {
+            color: #fff;
+            font-weight : bold;
+        }
+
+        .navbar .navbar-nav .nav-link {
+            color: #fff;
+            font-size : 1.1em;
+        }
+
+        .navbar .navbar-nav .nav-link:hover {
+            color: #f8f9fa;
+        }
+
+        .container-fluid {
+            padding: 20px;
+        }
 
         .payment-container {
             max-width: 600px;
             margin: 50px auto;
-            background: rgba(255, 255, 255, 0.1);
+            background: white;
             border-radius: 10px;
             backdrop-filter: blur(10px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -84,13 +112,56 @@ if (!$service_type) {
 
         .payment-details {
             margin-bottom: 20px;
-            color: #ffffff;
+            color: black;
         }
     </style>
 </head>
 
 <body>
+  <!-- Header -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="home.php">Municipal Billing System</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+             <li class="nav-item">
+                 <a class="nav-link" href="dashboard.php"><i class="fas fa-home"></i> Dashboard</a>
+             </li>
+                 <li class="nav-item">
+               <a class="nav-link active" href="profile.php"><i class="fas fa-user"></i> Profile</a>
+             </li>
+            <li class="nav-item dropdown">
+           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-briefcase"></i> Bills
+          </a>
+           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="electricity_bills.php">Electricity</a></li>
+            <li><a class="dropdown-item" href="water_bills.php">Water</a></li>
+          </ul>
+          <li class="nav-item dropdown">
+           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+           <i class="fas fa-newspaper"></i>News
+          </a>
+           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="electricity_news.php">Electricity</a></li>
+            <li><a class="dropdown-item" href="water_news.php">Water</a></li>
+            <li><a class="dropdown-item" href="loadshedding.php">Loadshedding</a></li>
+          </ul>
+            </li>
+            
+            <li class="nav-item">
+          <a class="nav-link" href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
+          </li>
+            </ul>
 
+            </div>
+             </div>
+         </nav>
+
+    <!-- Main Content -->
 
     <!-- Payment Details -->
     <div class="container payment-container">

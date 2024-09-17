@@ -6,8 +6,8 @@ session_start(); // Start a session to store user information
 $servername = "sql110.infinityfree.com";
 $username = "if0_37164635";
 $password = "bd2xR7cX6JRK";
-$dbname = "if0_37164635_municipal_billing";*/
-
+$dbname = "if0_37164635_municipal_billing";
+*/
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -54,16 +54,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Redirect based on the user's role
             if ($role === 'admin') {
                 header("Location: admin/admin_dashboard.php");
+            } else if ($role === 'junioradmi') {
+                header("Location: junioradmi/admin_dashboard.php");
             } else {
                 header("Location: dashboard.php");
             }
             exit;
         } else {
-            echo "<script>alert('Incorrect password.');window.location.href='index.php';</script>";
-            header("Location: index.php");
+            echo "<script>alert('Incorrect password.');window.location.href='login.php';</script>";
+           
         }
     } else {
-        echo "<script>alert('No user found with that email.');window.location.href='index.php';</script>";
+        echo "<script>alert('No user found with that email.');window.location.href='login.php';</script>";
     }
 
     // Close the statement and connection
@@ -71,3 +73,121 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $conn->close();
 }
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+     <!-- Bootstrap CSS -->
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/login.css">
+</head>
+<body>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    background: #f0f2f5;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+}
+
+.login-container, .signup-container {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.login-container h2, .signup-container h2 {
+    text-align: center;
+    color: #0056b3;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.btn-primary {
+    background-color: #0056b3;
+    border: none;
+    margin-top: 10px;
+}
+
+.btn-primary:hover {
+    background-color: #004494;
+}
+
+a {
+    color: #0056b3;
+}
+
+a:hover {
+    color: #004494;
+}
+.navbar {
+    background: rgba(0, 86, 179, 0.7);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .navbar-brand {
+    color: #fff;
+    ofnt-weight:bold;
+}
+
+.navbar .navbar-nav .nav-link {
+    color: #fff;
+    font-size : 1.1em;
+}
+
+.navbar .navbar-nav .nav-link:hover {
+    color: #f8f9fa;
+}
+
+.container-fluid {
+    padding: 20px;
+}
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="home.php">Municipal Billing System</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+           
+             </div>
+         </nav>
+
+    <div class="container">
+        <div class="login-container">
+            <h2>Login</h2>
+            <form action="login.php" method="post">
+                <div class="form-group">
+                    <label for="loginEmail">Email address</label>
+                    <input type="email" class="form-control" id="loginEmail" name="email" placeholder="Enter email" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" class="form-control" id="loginPassword" name="password" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+                <p>Don't have an account? <a href="signup.php">Sign up</a></p>
+            </form>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
