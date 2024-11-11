@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($role === 'admin') {
                 header("Location: admin/admin_dashboard.php");
             } else if ($role === 'junioradmi') {
-                header("Location: junioradmi/admin_dashboard.php");
+                header("Location: junioradmin/admin_dashboard.php");
             } else {
                 header("Location: dashboard.php");
             }
